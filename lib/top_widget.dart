@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
 class TopWidget extends StatelessWidget {
-  final String country;
-  final String dateTime;
-  final String weatherIcon;
-  final String centigrade;
-  final String weatherStatus;
-  final String lastUpdate;
-
   TopWidget(
       {Key? key,
       required this.country,
@@ -17,6 +10,13 @@ class TopWidget extends StatelessWidget {
       required this.weatherStatus,
       required this.lastUpdate})
       : super(key: key);
+
+  final String country;
+  final String dateTime;
+  final String weatherIcon;
+  final String centigrade;
+  final String weatherStatus;
+  final String lastUpdate;
 
   @override
   Widget build(BuildContext context) {
@@ -63,47 +63,43 @@ class TopWidget extends StatelessWidget {
                 fontSize: 12.5,
               ),
             ),
-            ListTile(
-              title: Container(
-                width: 110,
-                height: 110,
-                child: Image.asset(weatherIcon),
-              ),
-              subtitle: Column(
-                children: [
-                  Text(
-                    centigrade,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  Text(
-                    weatherStatus,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        lastUpdate,
-                        style: TextStyle(color: Colors.white, fontSize: 13),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.refresh,
-                        color: Colors.white,
-                        size: 17,
-                      )
-                    ],
-                  ),
-                ],
-              ),
+            Container(
+              height: 85,
+              child: Image.asset(weatherIcon),
+            ),
+            Text(
+              centigrade,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            Text(
+              weatherStatus,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  lastUpdate,
+                  style: TextStyle(color: Colors.white, fontSize: 13),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Icon(
+                  Icons.refresh,
+                  color: Colors.white,
+                  size: 17,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 2,
             ),
           ],
         ),

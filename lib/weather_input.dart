@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:weather_icons/weather_icons.dart';
+import 'bottom_widget.dart';
 import 'top_widget.dart';
+import 'hourly_cast.dart';
+import 'detailed_info.dart';
 
 class WeatherInput extends StatefulWidget {
   const WeatherInput({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _WeatherInputState extends State<WeatherInput> {
     // TODO: implement initState
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
 
   @override
@@ -34,61 +36,108 @@ class _WeatherInputState extends State<WeatherInput> {
             weatherStatus: "Cloudy Rain",
             lastUpdate: "Last Update 3.00 PM",
           ),
-          Text(
-            "Hourly Forecast",
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                HourlyGrid(),
-                HourlyGrid(),
-                HourlyGrid(),
-                HourlyGrid(),
-              ],
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  buildText("Hourly Forecast"),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: [
+                        HourlyCast(
+                          image: 'images/sun-rain.png',
+                          centigrade: '20',
+                          time: '4.00 PM',
+                        ),
+                        HourlyCast(
+                          image: 'images/rain.png',
+                          centigrade: '20',
+                          time: '5.00 PM',
+                        ),
+                        HourlyCast(
+                          image: 'images/storm.png',
+                          centigrade: '19',
+                          time: '6.00 PM',
+                        ),
+                        HourlyCast(
+                          image: 'images/cloud.png',
+                          centigrade: '19',
+                          time: '7.00 PM',
+                        ),
+                      ],
+                    ),
+                  ),
+                  buildText('Detail Information'),
+                  DetailedInfo(
+                    image: 'images/indicator.png',
+                    title: 'AQI - Good Quality',
+                    subtitle:
+                        'Value of 40 or below represents good air quality,while AQI value over 300 represents hazardous   air quality.',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: [
+                        BottomWidgets(
+                          icon: Icon(
+                            Icons.air,
+                            color: Color(0xffB3C7EDC),
+                          ),
+                          title: '86%',
+                          subtitle: 'Humidity',
+                        ),
+                        BottomWidgets(
+                          icon: Icon(
+                            Icons.all_inclusive,
+                            color: Color(0xffB3C7EDC),
+                          ),
+                          title: '940 hPa',
+                          subtitle: 'Air Pressure',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: [
+                        BottomWidgets(
+                          icon: Icon(
+                            Icons.beach_access_outlined,
+                            color: Color(0xffB3C7EDC),
+                          ),
+                          title: '4 km/h',
+                          subtitle: 'Visibility',
+                        ),
+                        BottomWidgets(
+                          icon: Icon(
+                            Icons.auto_graph_sharp,
+                            color: Color(0xffB3C7EDC),
+                          ),
+                          title: '18°C',
+                          subtitle: 'Feel Like',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
-}
 
-class HourlyGrid extends StatelessWidget {
-  const HourlyGrid({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-      margin: EdgeInsets.all(3),
-      height: 120,
-      color: Color(0xffF6F4F7),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-              width: 45, height: 45, child: Image.asset('images/sun-rain.png')),
-          Text(
-            "20°",
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          SizedBox(
-            height: 7,
-          ),
-          Text(
-            "4.00 PM",
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey.shade500),
-          ),
-        ],
+  Container buildText(String text) {
+    return Container(
+      margin: EdgeInsets.only(top: 15, left: 20),
+      child: Text(
+        text,
+        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19),
       ),
-    ));
+    );
   }
 }
