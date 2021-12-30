@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'bottom_widget.dart';
-import 'top_widget.dart';
-import 'hourly_cast.dart';
-import 'detailed_info.dart';
+import '../widgets/bottom_widget.dart';
+import '../widgets/top_widget.dart';
+import '../widgets/hourly_cast.dart';
+import '../widgets/detailed_info.dart';
 
 class WeatherInput extends StatefulWidget {
   const WeatherInput({Key? key}) : super(key: key);
@@ -48,22 +48,22 @@ class _WeatherInputState extends State<WeatherInput> {
                       children: [
                         HourlyCast(
                           image: 'images/sun-rain.png',
-                          centigrade: '20',
+                          centigrade: '20°',
                           time: '4.00 PM',
                         ),
                         HourlyCast(
                           image: 'images/rain.png',
-                          centigrade: '20',
+                          centigrade: '20°',
                           time: '5.00 PM',
                         ),
                         HourlyCast(
                           image: 'images/storm.png',
-                          centigrade: '19',
+                          centigrade: '19°',
                           time: '6.00 PM',
                         ),
                         HourlyCast(
                           image: 'images/cloud.png',
-                          centigrade: '19',
+                          centigrade: '19°',
                           time: '7.00 PM',
                         ),
                       ],

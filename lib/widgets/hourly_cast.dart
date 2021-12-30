@@ -24,14 +24,14 @@ class HourlyCast extends StatelessWidget {
         children: [
           Container(height: 35, child: Image.asset(image)),
           Text(
-            "20°",
+            centigrade,
             style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w700,
             ),
           ),
           Text(
-            "4.00 PM",
+            time,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 13, color: Color(0xff797778)),
           ),
